@@ -19,6 +19,7 @@ public class UsersController : AbstractController
     [HttpPost]
     public async Task<ActionResult<EmptySuccessResponseDto>> Register(RegisterUserRequestDto requestDto)
     {
+        var passwordHash = _userService.CreatePasswordHash(requestDto.Password);
         
          await _userService.CreateUser(new User
          {
@@ -26,7 +27,7 @@ public class UsersController : AbstractController
              Username = requestDto.Username,
              FirstName = requestDto.FirstName,
              LastName = requestDto.LastName,
-             PasswordHash = requestDto.Password,
+             PasswordHash = await passwordHash,
              CreatedAt = DateTime.UtcNow
          });
 

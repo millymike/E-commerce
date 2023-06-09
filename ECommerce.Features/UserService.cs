@@ -18,4 +18,8 @@ public class UserService : IUserService
         await _dataContext.SaveChangesAsync();
         return user;
     }
+    public async Task<string?> CreatePasswordHash(string? password)
+    {
+        return await Task.FromResult(BCrypt.Net.BCrypt.HashPassword(password));
+    }
 }
