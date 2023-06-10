@@ -1,6 +1,8 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.Features;
 using ECommerce.Persistence;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = new ConfigurationBuilder()
@@ -21,6 +23,8 @@ builder.Services.AddDbContextFactory<DataContext>(options =>
 
 // Other service registrations
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
