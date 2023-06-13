@@ -10,6 +10,6 @@ public class DataContext : DbContext
         : base(options)
     {
     }
-    public DbSet<User> Users { get; set; }
-   
+    public DbSet<Vendor> Vendors { get; set; }
+
 }

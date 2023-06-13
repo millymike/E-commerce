@@ -1,3 +1,3 @@
 namespace ECommerce.Models;
 
-public record ValidationError(string message, string property);
+public record ValidationError(string property, string message);
