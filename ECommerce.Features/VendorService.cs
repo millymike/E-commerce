@@ -56,7 +56,19 @@ public class VendorService : IVendorService
     }
     public Task<string> CreateJwtToken(Vendor vendor)
     {
-        throw new NotImplementedException();
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JwtSecret));
+        var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+        var claims = new List<Claim>
+            { new("sub", vendor.Id.ToString()) };
+        
+        return Task.FromResult(new JwtSecurityTokenHandler().WriteToken(
+            new JwtSecurityToken
+            (
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: cred
+            )));
     }
     
     public Task<bool> VerifyPassword(string password, Vendor vendor)
