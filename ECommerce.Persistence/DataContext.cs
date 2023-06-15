@@ -11,5 +11,7 @@ public class DataContext : DbContext
     {
     }
     public DbSet<Vendor> Vendors { get; set; }
+    
+    public DbSet<Customer> Customers { get; set; }
 
 }

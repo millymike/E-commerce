@@ -9,13 +9,13 @@ namespace ECommerce.Api.Controllers;
 [Route("api/[controller]/[action]")]
 [ApiController]
 [ProducesResponseType(typeof(UserInputErrorDto), 400)]
-public class VendorsController : AbstractController
+public class VendorController : AbstractController
 {
     private readonly IValidator<RegisterVendorRequestDto> _registerVendorRequest;
     private readonly IValidator<LoginVendorRequestDto> _loginVendorRequest;
     private readonly IVendorService _vendorService;
 
-    public VendorsController(
+    public VendorController(
         IVendorService vendorService, 
         IValidator<RegisterVendorRequestDto> registerVendorRequest, 
         IValidator<LoginVendorRequestDto> loginVendorRequest)

@@ -29,6 +29,7 @@ builder.Services.AddDbContextFactory<DataContext>(options =>
 
 // Other service registrations
 builder.Services.AddScoped<IVendorService, VendorService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 builder.Services.AddSwaggerGen(options =>
